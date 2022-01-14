@@ -14,6 +14,7 @@ namespace MockAPI.Controllers
     public class FlexibleObjectsController : ControllerBase
     {
         public List<string> types = new List<string> { "ManualBeginningApproval", "ApprovalChainApproval" };
+        public List<string> statuses = new List<string> { "pending_approval", "approved", "escalated", "submitted" };
 
         [HttpGet("instances")]
         [HttpPost("{transactionType}/instances")]
@@ -25,6 +26,7 @@ namespace MockAPI.Controllers
             foreach(var item in obj.approvals)
             {
                 item.type = types[RandomValue.Int(1, 0)];
+                item.status = statuses[RandomValue.Int(3, 0)];
             }
             return obj;
         }

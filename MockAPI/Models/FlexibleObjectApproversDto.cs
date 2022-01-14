@@ -45,8 +45,8 @@ namespace MockAPI.Models
             public int position { get; set; }
             public int? approval_chain_id { get; set; }
             public string status { get; set; }
-            public object approval_date { get; set; }
-            public object note { get; set; }
+            public DateTime? approval_date { get; set; }
+            public string note { get; set; }
             public string type { get; set; }
             public string approvable_type { get; set; }
             public string approver_type { get; set; }
@@ -54,7 +54,7 @@ namespace MockAPI.Models
             public int approver_id { get; set; }
             public int? delegate_id { get; set; }
             public bool holdable { get; set; }
-            public Approver approver { get; set; }
+            public Person approver { get; set; }
             public string[] reasons { get; set; }
             public Person created_by { get; set; }
             public Person updated_by { get; set; }
@@ -65,21 +65,6 @@ namespace MockAPI.Models
             public Person updatedby { get; set; }
         }
 
-        public class Approver
-        {
-            public int id { get; set; }
-            public string login { get; set; }
-            public string email { get; set; }
-            public string first_name { get; set; }
-            public string last_name { get; set; }
-            public string full_name { get; set; }
-            public object salesforce_id { get; set; }
-            public string avatar_thumb_url { get; set; }
-            public string firstname { get; set; }
-            public string lastname { get; set; }
-            public string fullname { get; set; }
-        }
-
         public class Person
         {
             public int id { get; set; }
@@ -88,8 +73,8 @@ namespace MockAPI.Models
             public string first_name { get; set; }
             public string last_name { get; set; }
             public string full_name { get; set; }
-            public object salesforce_id { get; set; }
-            public object avatar_thumb_url { get; set; }
+            public int salesforce_id { get; set; }
+            public string avatar_thumb_url { get; set; }
             public string firstname { get; set; }
             public string lastname { get; set; }
             public string fullname { get; set; }

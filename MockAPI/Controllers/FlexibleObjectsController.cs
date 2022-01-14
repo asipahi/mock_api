@@ -13,12 +13,20 @@ namespace MockAPI.Controllers
     [ApiController]
     public class FlexibleObjectsController : ControllerBase
     {
+        public List<string> types = new List<string> { "ManualBeginningApproval", "ApprovalChainApproval" };
+
         [HttpGet("instances")]
+        [HttpPost("{transactionType}/instances")]
         [HttpPost("instances")]
-        [HttpPut("instances/{id:int}")]
-        public FlexibleObjectApproversDto Instance()
+        [HttpPut("{transactionType}/instances/{id:int}")]
+        public FlexibleObjectApproversDto Instance(string transactionType)
         {
-            return RandomValue.Object<FlexibleObjectApproversDto>();
+            var obj = RandomValue.Object<FlexibleObjectApproversDto>();
+            foreach(var item in obj.approvals)
+            {
+                item.type = types[RandomValue.Int(1, 0)];
+            }
+            return obj;
         }
 
         [HttpGet("instances/{id:int}/submit_for_approval")]

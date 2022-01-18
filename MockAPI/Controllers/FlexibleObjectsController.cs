@@ -23,10 +23,12 @@ namespace MockAPI.Controllers
         public FlexibleObjectApproversDto Instance(string transactionType)
         {
             var obj = RandomValue.Object<FlexibleObjectApproversDto>();
-            foreach(var item in obj.approvals)
+            var position = 1;
+            foreach (var item in obj.approvals)
             {
                 item.type = types[RandomValue.Int(1, 0)];
                 item.status = statuses[RandomValue.Int(3, 0)];
+                position += 1;
             }
             return obj;
         }

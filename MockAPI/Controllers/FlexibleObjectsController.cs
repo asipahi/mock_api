@@ -28,16 +28,27 @@ namespace MockAPI.Controllers
             {
                 item.type = types[RandomValue.Int(1, 0)];
                 item.status = statuses[RandomValue.Int(3, 0)];
-                position += 1;
+                item.position = position;
+                position += 1;                
             }
             return obj;
         }
 
         [HttpGet("instances/{id:int}/submit_for_approval")]
         [HttpPost("instances/{id:int}/submit_for_approval")]
+        [HttpPost("{transactionType}/instances/{id:int}/submit_for_approval")]
         public FlexibleObjectApproversDto SubmitForApproval()
         {
-            return RandomValue.Object<FlexibleObjectApproversDto>();
+            var obj = RandomValue.Object<FlexibleObjectApproversDto>();
+            var position = 1;
+            foreach (var item in obj.approvals)
+            {
+                item.type = types[RandomValue.Int(1, 0)];
+                item.status = statuses[RandomValue.Int(3, 0)];
+                item.position = position;
+                position += 1;                
+            }
+            return obj;
         }
     }
 }

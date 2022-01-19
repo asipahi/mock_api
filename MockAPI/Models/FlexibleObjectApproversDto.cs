@@ -55,7 +55,7 @@ namespace MockAPI.Models
             public int? delegate_id { get; set; }
             public bool holdable { get; set; }
             public Person approver { get; set; }
-            public string[] reasons { get; set; }
+            public List<string> reasons { get; set; }
             public Person created_by { get; set; }
             public Person updated_by { get; set; }
             public DateTime createdat { get; set; }

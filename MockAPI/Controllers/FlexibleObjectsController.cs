@@ -14,7 +14,7 @@ namespace MockAPI.Controllers
     public class FlexibleObjectsController : ControllerBase
     {
         public List<string> types = new List<string> { "ManualBeginningApproval", "ApprovalChainApproval" };
-        public List<string> statuses = new List<string> { "pending_approval", "approved", "escalated", "submitted" };
+        public List<string> statuses = new List<string> { "pending_approval", "escalated", "submitted" };
         public List<string> names = new List<string> {
             "Kylie Bailey",
             "Maria Howard",
@@ -26,6 +26,13 @@ namespace MockAPI.Controllers
             "Gavin Hodges",
             "Blake Sanderson",
             "Piers Watson" 
+        };
+        public List<string> reasons = new List<string>
+        {
+            "Added by the approval chain Test Chain 1",
+            "This object exceeds the approval limits of all of the listed approvers.",
+            "Acting as Ultimate Approver",
+            "Manually added by Coupa Support"
         };
 
         [HttpGet("instances")]
@@ -40,9 +47,10 @@ namespace MockAPI.Controllers
             foreach (var item in obj.approvals)
             {
                 item.type = types[RandomValue.Int(1, 0)];
-                item.status = statuses[RandomValue.Int(statuses.Count - 1, 0)];
+                item.status = position == 0 ? "approved" : statuses[RandomValue.Int(statuses.Count - 1, 0)];
                 item.position = position++;
                 item.approver.full_name = names[RandomValue.Int(names.Count - 1, 0)];
+                item.reasons = new List<string> { reasons[RandomValue.Int(reasons.Count - 1, 0)] };
             }
             return obj;
         }

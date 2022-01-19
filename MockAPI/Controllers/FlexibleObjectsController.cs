@@ -40,6 +40,7 @@ namespace MockAPI.Controllers
         [HttpPost("instances")]
         [HttpPut("{transactionType}/instances/{id:int}")]
         [HttpPut("{transactionType}/instances/{id:int}/approve")]
+        [HttpPost("{transactionType}/instances/{id:int}/approvals")]
         public FlexibleObjectApproversDto Instance(string transactionType)
         {
             var obj = RandomValue.Object<FlexibleObjectApproversDto>();

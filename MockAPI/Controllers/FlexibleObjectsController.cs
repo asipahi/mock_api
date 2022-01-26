@@ -47,6 +47,7 @@ namespace MockAPI.Controllers
             var position = 0;
             foreach (var item in obj.approvals)
             {
+                item.id = RandomValue.Int(1, 1000);
                 item.type = types[RandomValue.Int(1, 0)];
                 item.status = position == 0 ? "approved" : statuses[RandomValue.Int(statuses.Count - 1, 0)];
                 item.position = position++;
